@@ -1,12 +1,19 @@
-from rtl.template_engine import render_template
+# backend/rtl/modules/decoder.py
 
+def generate_decoder(plan: dict, params: dict) -> str:
 
-def generate_decoder(plan, params):
+    bank_bits = plan["bank_address_bits"]
+    local_bits = plan["local_address_bits"]
 
-    context = {
-        "ADDR_WIDTH": params["ADDR_WIDTH"],
-        "bank_bits": plan["bank_address_bits"],
-        "local_bits": plan["local_address_bits"]
-    }
+    return f"""
+module decoder (
+    input [{params['ADDR_WIDTH']-1}:0] addr,
+    output [{bank_bits-1}:0] bank_id,
+    output [{local_bits-1}:0] local_addr
+);
 
-    return render_template("decoder.v.j2", context)
+    assign bank_id = addr[{params['ADDR_WIDTH']-1}:{params['ADDR_WIDTH']-bank_bits}];
+    assign local_addr = addr[{local_bits-1}:0];
+
+endmodule
+"""

@@ -91,12 +91,12 @@ module arbiter (
 endmodule
 
 
+
 module bank #(
     parameter DATA_WIDTH = 32,
-    parameter ADDR_WIDTH = 
+    parameter ADDR_WIDTH = 8
 )(
     input clk,
-    input rst,
     input we,
     input [ADDR_WIDTH-1:0] addr,
     input [DATA_WIDTH-1:0] wdata,
@@ -106,82 +106,14 @@ module bank #(
     reg [DATA_WIDTH-1:0] mem [0:(1<<ADDR_WIDTH)-1];
 
     always @(posedge clk) begin
-        if (we) begin
+        if (we)
             mem[addr] <= wdata;
-        end
+
         rdata <= mem[addr];
     end
 
 endmodule
 
-module bank #(
-    parameter DATA_WIDTH = 32,
-    parameter ADDR_WIDTH = 
-)(
-    input clk,
-    input rst,
-    input we,
-    input [ADDR_WIDTH-1:0] addr,
-    input [DATA_WIDTH-1:0] wdata,
-    output reg [DATA_WIDTH-1:0] rdata
-);
-
-    reg [DATA_WIDTH-1:0] mem [0:(1<<ADDR_WIDTH)-1];
-
-    always @(posedge clk) begin
-        if (we) begin
-            mem[addr] <= wdata;
-        end
-        rdata <= mem[addr];
-    end
-
-endmodule
-
-module bank #(
-    parameter DATA_WIDTH = 32,
-    parameter ADDR_WIDTH = 
-)(
-    input clk,
-    input rst,
-    input we,
-    input [ADDR_WIDTH-1:0] addr,
-    input [DATA_WIDTH-1:0] wdata,
-    output reg [DATA_WIDTH-1:0] rdata
-);
-
-    reg [DATA_WIDTH-1:0] mem [0:(1<<ADDR_WIDTH)-1];
-
-    always @(posedge clk) begin
-        if (we) begin
-            mem[addr] <= wdata;
-        end
-        rdata <= mem[addr];
-    end
-
-endmodule
-
-module bank #(
-    parameter DATA_WIDTH = 32,
-    parameter ADDR_WIDTH = 
-)(
-    input clk,
-    input rst,
-    input we,
-    input [ADDR_WIDTH-1:0] addr,
-    input [DATA_WIDTH-1:0] wdata,
-    output reg [DATA_WIDTH-1:0] rdata
-);
-
-    reg [DATA_WIDTH-1:0] mem [0:(1<<ADDR_WIDTH)-1];
-
-    always @(posedge clk) begin
-        if (we) begin
-            mem[addr] <= wdata;
-        end
-        rdata <= mem[addr];
-    end
-
-endmodule
 
 // No pipeline
 
