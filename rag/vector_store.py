@@ -1,6 +1,4 @@
-class VectorStore:
-    def add(self, embeddings):
-        pass
+
 import faiss
 import pickle
 import numpy as np
