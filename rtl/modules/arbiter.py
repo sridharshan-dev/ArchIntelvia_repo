@@ -1,0 +1,2 @@
+class ArbiterModule:
+    pass

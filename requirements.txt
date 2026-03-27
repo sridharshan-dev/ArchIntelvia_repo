@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+openai
+faiss-cpu
+jinja2
+python-dotenv
+loguru

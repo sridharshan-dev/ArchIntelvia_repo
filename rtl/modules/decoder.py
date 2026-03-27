@@ -1,0 +1,2 @@
+class DecoderModule:
+    pass
