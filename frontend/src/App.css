@@ -1,0 +1,102 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow: hidden;
+}
+
+.left-panel {
+  flex: 0 0 350px;
+  background-color: var(--panel-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.top-row {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 300px;
+}
+
+.bottom-panel {
+  flex: 0 0 300px;
+  background-color: var(--panel-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panel Headers */
+.panel-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-header h2 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Common Card Styling */
+.card {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  padding: 15px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Chat Styling place holders */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.chat-input-container {
+  padding: 15px;
+  border-top: 1px solid var(--border-color);
+}
