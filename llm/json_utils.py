@@ -1,34 +1,40 @@
 import json
-import re
 import ast
 
 
-def extract_json_block(text: str) -> str:
+def safe_json_parse(text):
     """
-    Extract first JSON-like block from text
+    Robust parser that handles:
+    - dict (already parsed)
+    - JSON string
+    - Python dict string
     """
-    match = re.search(r'\{.*\}', text, re.DOTALL)
-    if match:
-        return match.group(0)
-    return text
 
+    # ✅ CASE 1 — Already a dict
+    if isinstance(text, dict):
+        return text
 
-def safe_json_parse(text: str):
-    """
-    Robust parser:
-    1. Extract JSON
-    2. Try json.loads
-    3. Fallback to ast.literal_eval
-    """
+    # ✅ CASE 2 — JSON string
     try:
-        cleaned = extract_json_block(text)
-
-        # Attempt strict JSON
-        return json.loads(cleaned)
-
+        return json.loads(text)
     except:
-        try:
-            # Fallback: Python dict → JSON
-            return ast.literal_eval(cleaned)
-        except:
-            return None
+        pass
+
+    # ✅ CASE 3 — Python dict string
+    try:
+        return ast.literal_eval(text)
+    except:
+        pass
+
+    # ✅ CASE 4 — Extract substring
+    try:
+        start = text.find("{")
+        end = text.rfind("}") + 1
+
+        if start != -1 and end != -1:
+            snippet = text[start:end]
+            return ast.literal_eval(snippet)
+    except:
+        pass
+
+    return None
