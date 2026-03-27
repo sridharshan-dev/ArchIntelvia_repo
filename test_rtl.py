@@ -1,19 +1,10 @@
-# test_rtl.py
-
-from planner.planner import generate_architecture_plan
-from rtl.generator import generate_rtl
+from rtl.testbench import generate_testbench
 
 params = {
     "DATA_WIDTH": 32,
-    "ADDR_WIDTH": 10,
-    "BANKS": 4,
-    "PIPELINE_DEPTH": 2,
-    "LOW_POWER_MODE": True
+    "ADDR_WIDTH": 10
 }
 
-plan = generate_architecture_plan(params)
+tb = generate_testbench(params)
 
-rtl_code = generate_rtl(plan, params)
-
-print("\n=== GENERATED RTL ===\n")
-print(rtl_code)
+print(tb)

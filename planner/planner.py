@@ -59,7 +59,14 @@ def generate_architecture_plan(params: dict) -> dict:
 
     raw_output = call_llm(prompt)
 
-    validated = safe_parse(raw_output, ARCH_PLAN_SCHEMA)
+    from llm.json_utils import safe_json_parse
+
+    parsed = safe_json_parse(raw_output)
+
+    if parsed is None:
+        raise ValueError("Failed to parse LLM architecture output")
+
+    validated = parsed
 
     # 🔥 STEP 4 — Deterministic corrections
     split = compute_address_split(final_params)
